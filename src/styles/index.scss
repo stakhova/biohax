@@ -104,6 +104,12 @@
   }
 }
 .header{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  width: 100%;
+  z-index: 1;
   .container {
     padding: 4.5rem 15rem;
   }
@@ -122,7 +128,9 @@
       padding: 1.6rem 0;
       transition: all 0.2s ease;
       cursor: pointer;
-
+      &:hover{
+        color: var(--color-accent);
+      }
     }
   }
 
@@ -220,8 +228,18 @@
 }
 
 .main{
+  position: relative;
   .container{
-    padding: 1.3rem 13rem 6.4rem;
+    padding: 13.5rem 13rem 6.4rem;
+  }
+
+  &__back{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: -1;
   }
   &__title{
     font: 400 9.6rem/11.6rem var(--Inter);
@@ -536,8 +554,109 @@
 }
 
 .footer{
-  background:  lightgray 50% / cover no-repeat;
+  position: relative;
 
+  &:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:  black;
+    opacity: 0.8;
+    z-index: -1;
+  }
+  &>*{
+    color: var(--color-footer);
+  }
+  &__logo{
+    width: 38.8rem;
+  }
+  &__desc{
+    font: 400 2.4rem/140% var(--Roboto);
+    max-width: 47.3rem;
+  }
+
+  .container{
+    padding: 10rem 13rem 6.6rem ;
+  }
+  &__back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+  }
+  &__flex{
+    display: flex;
+    align-items: center;
+  }
+  &__info{
+    display: flex;
+    gap:10rem;
+    padding: 6.4rem 0;
+    &-item{
+      h4{
+        font: 400 1.6rem/1.9rem var(--Inter);
+        margin-bottom: 0.8rem;
+      }
+      a{
+        font: 400 2.4rem/2.9rem var(--Inter);
+      }
+    }
+  }
+  &__service{
+    h3{
+      font: 400 2.4rem/3.4rem var(--Roboto);
+      margin-bottom: 3.2rem;
+    }
+    &-list{
+      display: flex;
+      gap: 2.4rem;
+      flex-direction: column;
+      a{
+        font: 400 1.4rem/1.7rem var(--Inter);
+      }
+    }
+  }
+  &__form{
+    display: flex;
+    gap: 6.4rem;
+    align-items: center;
+    &-input{
+      position: relative;
+      input{
+        border: none;
+        padding: 1.8rem 3.2rem;
+        background: transparent;
+      }
+      button{
+        padding: 1.8rem 6.2rem;
+        border-radius: 2.7rem;
+        border: 0.1rem solid var(--color-white);
+        background: transparent;
+      }
+      &:after{
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 2.7rem;
+        border: 0.1rem solid var(--color-white);
+        opacity: 0.1;
+      }
+    }
+  }
+  &__menu{
+    display: flex;
+    gap: 6.1rem;
+    a{
+      font: 400 1.6rem/1.9rem var(--Inter);
+    }
+  }
 }
 
 
