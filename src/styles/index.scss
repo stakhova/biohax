@@ -26,7 +26,12 @@
     border-radius: 4.8rem;
     font: 400 1.6rem/1.9rem var(--Inter);
     padding: 2.5rem 3.5rem;
-    display: inline-block;
+    display: flex;
+    width: max-content;
+    &:hover {
+      transition: 0.2s all ease;
+      box-shadow: 0 0 2rem 0 var(--color-accent);
+    }
     &__transparent{
       position: relative;
       background: var(--color-white);
@@ -40,6 +45,12 @@
         height: 100%;
         border-radius: 4.8rem;
         border: 0.1rem solid var(--color-accent);
+      }
+      &:hover {
+        transition: 0.2s all ease;
+        background-color: var(--color-accent);
+        color: var(--color-white);
+        box-shadow: none;
       }
     }
   }
@@ -287,6 +298,9 @@
     overflow: hidden;
 
   }
+  .swiper-slide img{
+    border-radius: 19.3rem;
+  }
 
 }
 
@@ -311,6 +325,11 @@
   &__logo{
     width: 13.1rem;
     margin-bottom: 2.2rem;
+  }
+  &__img{
+    img{
+      border-radius:8rem;
+    }
   }
 
 }
@@ -724,6 +743,55 @@ label.error{
   .wrap .container{
     padding: 3.2rem 2rem;
   }
+  .main .container{
+    padding: 8rem 2rem 6.4rem;
+  }
+  .main__flex{
+    flex-direction: column-reverse;
+    gap:2.4rem;
+    &>*{
+      width: 100%;
+    }
+  }
+  .main__title{
+    font-size: 2.4rem;
+    line-height: 2.9rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+  .main__subtitle{
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    text-align: center;
+    margin-bottom: 3.2rem;
+  }
+  .main .section__button{
+    margin: 0 auto;
+  }
+  .main__anker{
+    margin: 8.5rem auto 0;
+  }
+  .main .swiper-slide{
+    height: 44vw;
+    img{
+      border-radius:19.3rem ;
+    }
+  }
+  .banner__block{
+    bottom: auto;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    padding: 1.6rem;
+  }
+  .banner__img{
+    height: 100vw;
+    img{
+      object-position: left;
+    }
+  }
+
   .header__burger {
     display: flex;
   }
@@ -740,6 +808,10 @@ label.error{
     top:10rem;
     left: 0;
     height: calc(100vh - 10rem);
+  }
+  .section__button{
+    font-size: 1.4rem;
+    line-height: 1.7rem;
   }
   .section__title{
     font-size: 2.4rem;
