@@ -97,7 +97,6 @@ const gallery = new Swiper('.main__gallery-swiper', {
 });
 
 const review = new Swiper(".review__slider", {
-    // modules: [Navigation],
     slidesPerView: 3,
     spaceBetween: 50,
     loop: true,
@@ -107,7 +106,7 @@ const review = new Swiper(".review__slider", {
         prevEl: ".swiper-button-prev_review"
     },
     pagination: {
-        el: '.swiper-pagination',
+        el: '.review__pagination',
         clickable: true,
     },
     breakpoints: {
@@ -122,18 +121,86 @@ const review = new Swiper(".review__slider", {
     }
 });
 
+
+function mobChange(){
+    if (window.innerWidth <= 666) {
+        const service = new Swiper(".service__slider", {
+            slidesPerView: 1.25,
+            spaceBetween: 18,
+            loop: true,
+
+            pagination: {
+                el: '.service__pagination',
+                clickable: true,
+            },
+        });
+
+        const procedure = new Swiper(".procedure__slider", {
+            slidesPerView: 1.25,
+            spaceBetween: 18,
+            loop: true,
+
+            pagination: {
+                el: '.procedure__pagination',
+                clickable: true,
+            },
+        });
+        let serviceView = $('.service__view')
+        $('.service .section__subtitle').after(serviceView)
+    }
+}
+
+
+function counter() {
+    $(window).scroll(function() {
+        let counted = 0;
+        let oTop = $('#counter').offset().top - window.innerHeight;
+        if (counted == 0 && $(window).scrollTop() > oTop) {
+            $('.achievement__counter').each(function() {
+                let $this = $(this),
+                    countTo = $this.attr('data-count');
+                $({
+                    countNum: $this.text()
+                }).animate({
+                        countNum: countTo
+                    },
+                    {
+
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function() {
+                            $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function() {
+                            $this.text(this.countNum);
+                        }
+
+                    });
+            });
+            counted = 1;
+        }
+
+    });
+}
+
 $(document).ready(function(){
+    counter();
+    mobChange();
+    $('.section__select').select2({});
     $('.header__burger').on('click', openMenu);
 
+});
+
+
+
+
+$(window).load(function(){
     let formConsultation = $('.consultation__form'),
         modalConsultation = $(".modal__consultation");
     validateForm(formConsultation, function () {
         sendForm(formConsultation, '/wp-admin/admin-ajax.php');
         // toogleModalWithoutClick(modalSchool);
     });
-});
-
-$(window).load(function(){
 
 });
 

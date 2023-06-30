@@ -18,14 +18,20 @@
                     <div class="main__gallery">
                         <div class="main__gallery-swiper swiper-container">
                             <div class="swiper-wrapper">
-                                <div class="img swiper-slide">
-                                    <img src="img/main.png" alt="">
+                                <div class=" swiper-slide">
+                                    <div class="img main__gallery-img">
+                                         <img src="img/main.png" alt="">
+                                    </div>
                                 </div>
-                                <div class="img swiper-slide">
-                                    <img src="img/banner.png" alt="">
+                                <div class=" swiper-slide">
+                                    <div class="img main__gallery-img">
+                                        <img src="img/banner.png" alt="">
+                                    </div>
                                 </div>
-                                <div class="img swiper-slide">
-                                    <img src="img/main.png" alt="">
+                                <div class=" swiper-slide">
+                                    <div class="img main__gallery-img">
+                                        <img src="img/main.png" alt="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -64,13 +70,13 @@
             <div class="container">
                 <h2 class="section__title">Welcome to Biohax</h2>
                 <h3 class="section__subtitle">Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle.</h3>
-                <ul class="achievement__list">
+                <ul class="achievement__list" id="counter">
                     <li class="achievement__item section__gradient">
                         <div class="achievement__img img">
                             <img src="img/11.png" alt="">
                         </div>
                         <div class="achievement__info">
-                            <h3 class="achievement__counter">1 452+</h3>
+                            <h3 class="achievement__counter " data-count="100" > 0</h3>
                             <h4>Happy Patients</h4>
                         </div>
                     </li>
@@ -79,7 +85,7 @@
                             <img src="img/22.png" alt="">
                         </div>
                         <div class="achievement__info">
-                            <h3 class="achievement__counter">1 452+</h3>
+                            <h3 class="achievement__counter " data-count="1340" > 0</h3>
                             <h4>Happy Patients</h4>
                         </div>
                     </li>
@@ -88,7 +94,7 @@
                             <img src="img/banner.png" alt="">
                         </div>
                         <div class="achievement__info ">
-                            <h3 class="achievement__counter">15+</h3>
+                            <h3 class="achievement__counter  " data-count="100" > 0</h3>
                             <h4>Happy Patients</h4>
                         </div>
                     </li>
@@ -97,7 +103,7 @@
                             <img src="img/main.png" alt="">
                         </div>
                         <div class="achievement__info">
-                            <h3 class="achievement__counter">144+</h3>
+                            <h3 class="achievement__counter  " data-count="234" > 0</h3>
                             <h4>Happy Patients</h4>
                         </div>
                     </li>
@@ -110,48 +116,52 @@
             <div class="container">
                 <h2 class="section__title">What Service We Offer</h2>
                 <h3 class="section__subtitle">At Biohax Wellness and Aesthetics, we focus on a holistic approach to beauty, balanced from the inside out.</h3>
-                <ul class="service__list">
-                    <li class="service__item" >
-                        <div class="service__info">
-                            <h3>Red Light Therapy</h3>
-                            <p>Red light therapy (RLT) is a therapeutic technique</p>
-                            <a class="section__button section__button__transparent" href="#">Read more</a>
-                        </div>
-                        <div class="service__img section__gradient img">
-                            <img src="img/33.png" alt="">
-                        </div>
-                    </li>
-                    <li class="service__item service__item-reverse" >
-                        <div class="service__info">
-                            <h3>Red Light Therapy</h3>
-                            <p>Red light therapy (RLT) is a therapeutic technique</p>
-                            <a class="section__button section__button__transparent" href="#">Read more</a>
-                        </div>
-                        <div class="service__img section__gradient img">
-                            <img src="img/44.png" alt="">
-                        </div>
-                    </li>
-                    <li class="service__item" >
-                        <div class="service__info">
-                            <h3>Red Light Therapy</h3>
-                            <p>Red light therapy (RLT) is a therapeutic technique</p>
-                            <a class="section__button section__button__transparent" href="#">Read more</a>
-                        </div>
-                        <div class="service__img section__gradient img">
-                            <img src="img/33.png" alt="">
-                        </div>
-                    </li>
-                    <li class="service__item service__item-reverse" >
-                        <div class="service__info">
-                            <h3>Red Light Therapy</h3>
-                            <p>Red light therapy (RLT) is a therapeutic technique</p>
-                            <a class="section__button section__button__transparent" href="#">Read more</a>
-                        </div>
-                        <div class="service__img section__gradient img">
-                            <img src="img/11.png" alt="">
-                        </div>
-                    </li>
-                </ul>
+                <div class="service__slider swiper">
+                    <ul class="service__list swiper-wrapper">
+                            <li class="service__item swiper-slide ">
+                                <div class="service__info">
+                                    <h3>Red Light Therapy</h3>
+                                    <p>Red light therapy (RLT) is a therapeutic technique</p>
+                                    <a class="section__button section__button__transparent" href="#">Read more</a>
+                                </div>
+                                <div class="service__img section__gradient img">
+                                    <img src="img/33.png" alt="">
+                                </div>
+                            </li>
+                            <li class="service__item service__item-reverse swiper-slide" >
+                                <div class="service__info">
+                                    <h3>Red Light Therapy</h3>
+                                    <p>Red light therapy (RLT) is a therapeutic technique</p>
+                                    <a class="section__button section__button__transparent" href="#">Read more</a>
+                                </div>
+                                <div class="service__img section__gradient img">
+                                    <img src="img/44.png" alt="">
+                                </div>
+                            </li>
+                            <li class="service__item swiper-slide" >
+                                <div class="service__info">
+                                    <h3>Red Light Therapy</h3>
+                                    <p>Red light therapy (RLT) is a therapeutic technique</p>
+                                    <a class="section__button section__button__transparent" href="#">Read more</a>
+                                </div>
+                                <div class="service__img section__gradient img">
+                                    <img src="img/33.png" alt="">
+                                </div>
+                            </li>
+                            <li class="service__item service__item-reverse swiper-slide" >
+                                <div class="service__info">
+                                    <h3>Red Light Therapy</h3>
+                                    <p>Red light therapy (RLT) is a therapeutic technique</p>
+                                    <a class="section__button section__button__transparent" href="#">Read more</a>
+                                </div>
+                                <div class="service__img section__gradient img">
+                                    <img src="img/11.png" alt="">
+                                </div>
+                            </li>
+
+                    </ul>
+                </div>
+                <div class="swiper-pagination service__pagination "></div>
                 <a href="" class="section__button service__view">View all services</a>
 
             </div>
@@ -159,44 +169,49 @@
         <section class="procedure">
             <div class="container">
                 <h2 class="section__title-big">The Procedure for a Plastic Suegery at Quinnie</h2>
-                <ul class="procedure__list">
-                    <li class="procedure__item section__gradient ">
-                        <div class="procedure__img img">
-                            <img src="img/55.png" alt="">
-                        </div>
-                        <div class="procedure__info">
-                            <h3 class="section__title">Make an Appointment</h3>
-                            <h4 class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.</h4>
-                        </div>
-                    </li>
-                    <li class="procedure__item section__gradient ">
-                        <div class="procedure__img img">
-                            <img src="img/22.png" alt="">
-                        </div>
-                        <div class="procedure__info">
-                            <h3 class="section__title">Make an Appointment</h3>
-                            <h4 class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.</h4>
-                        </div>
-                    </li>
-                    <li class="procedure__item section__gradient ">
-                        <div class="procedure__img img">
-                            <img src="img/11.png" alt="">
-                        </div>
-                        <div class="procedure__info">
-                            <h3 class="section__title">Make an Appointment</h3>
-                            <h4 class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.</h4>
-                        </div>
-                    </li>
-                    <li class="procedure__item section__gradient ">
-                        <div class="procedure__img img">
-                            <img src="img/44.png" alt="">
-                        </div>
-                        <div class="procedure__info">
-                            <h3 class="section__title">Make an Appointment</h3>
-                            <h4 class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.</h4>
-                        </div>
-                    </li>
+
+
+                <div class="procedure__slider swiper">
+                    <ul class="procedure__list swiper-wrapper">
+                        <li class="procedure__item section__gradient swiper-slide  ">
+                            <div class="procedure__img img">
+                                <img src="img/55.png" alt="">
+                            </div>
+                            <div class="procedure__info">
+                                <h3 class="section__title">Make an Appointment</h3>
+                                <h4 class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.</h4>
+                            </div>
+                        </li>
+                        <li class="procedure__item section__gradient swiper-slide">
+                            <div class="procedure__img img">
+                                <img src="img/22.png" alt="">
+                            </div>
+                            <div class="procedure__info">
+                                <h3 class="section__title">Make an Appointment</h3>
+                                <h4 class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.</h4>
+                            </div>
+                        </li>
+                        <li class="procedure__item section__gradient swiper-slide">
+                            <div class="procedure__img img">
+                                <img src="img/11.png" alt="">
+                            </div>
+                            <div class="procedure__info">
+                                <h3 class="section__title">Make an Appointment</h3>
+                                <h4 class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.</h4>
+                            </div>
+                        </li>
+                        <li class="procedure__item section__gradient swiper-slide">
+                            <div class="procedure__img img">
+                                <img src="img/44.png" alt="">
+                            </div>
+                            <div class="procedure__info">
+                                <h3 class="section__title">Make an Appointment</h3>
+                                <h4 class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.</h4>
+                            </div>
+                        </li>
                 </ul>
+                </div>
+                <div class="swiper-pagination procedure__pagination "></div>
             </div>
 
 
@@ -213,12 +228,25 @@
                         <div class="section__input">
                             <input type="text" name="phone" placeholder="Phone">
                         </div>
+                        <select class="section__select" name="state">
+                            <option value="Service interested">Service interested</option>
+                            <option value="Red Light Therapy">Red Light Therapy</option>
+                            <option value="Cool Sculptig">Cool Sculptig</option>
+                            <option value="Compression therapy">Compression therapy</option>
+                        </select>
+                    </div>
+                    <div class=" consultation__flex-medium">
+                        <div class="section__input">
+                            <input type="text" name="address" placeholder="Address">
+                        </div>
                         <div class="section__input">
                             <input type="text" name="email" placeholder="Email">
                         </div>
+
                     </div>
+
                     <div class="section__input">
-                        <input type="text" name="comment" placeholder="Your comment">
+                        <input type="text" name="comment" placeholder="How did you hear about us?">
                     </div>
                     <button type="submit" class="section__button consultation__button" >Schedule a free consultation</button>
                 </form>
