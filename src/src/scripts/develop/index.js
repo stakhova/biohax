@@ -1,102 +1,11 @@
 const openMenu = () => {
     $('.header__burger').toggleClass("header__burger-open");
-    $('.header__logo ').toggleClass("header__logo-white");
     $('.header__menu-mob').toggleClass('header__menu-show');
     $('.header__container').toggleClass('header__open');
     $('.header__drop').removeClass('header__drop-open');
     $('.header__submenu').removeClass('header__submenu-open');
     $('body').toggleClass('hidden');
 };
-
-
-
-function toogleModal(btn, modal) {
-    btn.click(function () {
-        modal.show();
-        $('body').css('overflow', 'hidden');
-        return false;
-    });
-    $('.modal__close').click(function () {
-        $(this).closest(modal).hide();
-        // resetForm();
-        $('body').css('overflow', 'visible');
-        return false;
-    });
-    $('.modal__quiz-return').click(function () {
-        $(this).closest(modal).hide();
-        $('body').css('overflow', 'visible');
-        return false;
-    });
-
-    $(document).keydown(function (e) {
-        if (e.keyCode === 27) {
-            e.stopPropagation();
-            modal.hide();
-            // resetForm();
-            $('body').css('overflow', 'visible');
-        }
-    });
-    modal.click(function (e) {
-        if ($(e.target).closest('.modal__content').length == 0) {
-            $(this).hide();
-            // resetForm();
-            $('body').css('overflow', 'visible');
-        }
-    });
-}
-
-const showReview = () => {
-    $('.review__text span').click(function () {
-        let reviewText = $(this).closest('p').text();
-        let reviewName = $(this).closest('.review__text').find('.review__name h3').text();
-        console.log('reviewName',reviewName)
-        let currentReview = $(this).closest('p').text().substr(0, reviewText.length - 16);
-        // let currentReview =  $(this).closest('p').text().substr(0, reviewText.length-13)///якщо без крапок
-
-        $('.review__modal-swiper .review__text p').each(function (index) {
-
-            let reviewCurrentName = $(this).closest('.review__text').find('.review__name h3').text()
-            if ($(this).text().includes(currentReview) && reviewName===reviewCurrentName) {
-                const reviewModal = new Swiper(".review__modal-swiper", {
-                    initialSlide: index,
-                    slidesPerView: 1,
-                    spaceBetween: 0,
-                    navigation: {
-                        nextEl: ".swiper-button-next_reviewModal",
-                        prevEl: ".swiper-button-prev_reviewModal"
-                    }
-                });
-            }
-        });
-    });
-    toogleModal($('.review__text span'), $('.modal__review'));
-};
-
-function toogleModalWithoutClick(modal, func) {
-    modal.show();
-    $('body').css('overflow', 'hidden');
-    $('.modal__close').click(function () {
-        $(this).closest(modal).hide();
-        $('body').css('overflow', 'visible');
-        func();
-        return false;
-    });
-    $(document).keydown(function (e) {
-        if (e.keyCode === 27) {
-            e.stopPropagation();
-            modal.hide();
-            $('body').css('overflow', 'visible');
-            func();
-        }
-    });
-    modal.click(function (e) {
-        if ($(e.target).closest('.modal__content').length == 0) {
-            $(this).hide();
-            $('body').css('overflow', 'visible');
-            func();
-        }
-    });
-}
 
 
 const validateForm = (form, func) => {
@@ -107,11 +16,6 @@ const validateForm = (form, func) => {
     $.validator.addMethod("goodName", function (value, element) {
         return this.optional(element) || /^[аА-яЯіІєЄїЇґҐa-zA-Z0-9._-]{2,30}$/i.test(value);
     }, "Enter correct name");
-
-    $.validator.addMethod("goodAddress", function (value, element) {
-        return this.optional(element) || /^[аА-яЯіІєЄїЇґҐa-zA-Z0-9._-]{2,100}$/i.test(value);
-    }, "Enter correct address");
-
 
     $.validator.addMethod("goodEmail", function (value, element) {
         return this.optional(element) || /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,62}$/i.test(value);
@@ -127,10 +31,6 @@ const validateForm = (form, func) => {
             name: {
                 required: true,
                 goodName: true
-            },
-            address: {
-                required: true,
-                goodAddress: true
             },
 
             phone: {
@@ -148,12 +48,7 @@ const validateForm = (form, func) => {
             name: {
                 required: "This field is required",
                 minlength: "Name can't be shorter than 2 letter",
-                maxLength: "Name can't be longer than 30 letter"
-            },
-            address: {
-                required: "This field is required",
-                minlength: "Address can't be shorter than 2 letter",
-                maxLength: "Address can't be longer than 100 letter"
+                maxLength: "Name can't be longer than 25 letter"
             },
             phone: {
                 required: "This field is required",
@@ -252,9 +147,6 @@ function mobChange(){
         });
         let serviceView = $('.service__view')
         $('.service .section__subtitle').after(serviceView)
-
-        let headerBook = $('.header__book')
-        $('.header__menu-mob').append(headerBook)
     }
 }
 
@@ -294,7 +186,6 @@ function counter() {
 $(document).ready(function(){
     counter();
     mobChange();
-    showReview();
     $('.section__select').select2({});
     $('.header__burger').on('click', openMenu);
 
@@ -308,12 +199,7 @@ $(window).load(function(){
         modalConsultation = $(".modal__consultation");
     validateForm(formConsultation, function () {
         sendForm(formConsultation, '/wp-admin/admin-ajax.php');
-        toogleModalWithoutClick(modalConsultation);
-    });
-    let formFooter = $('.footer__form')
-    validateForm(formFooter, function () {
-        sendForm(formFooter, '/wp-admin/admin-ajax.php');
-        toogleModalWithoutClick(modalConsultation);
+        // toogleModalWithoutClick(modalSchool);
     });
 
 });
