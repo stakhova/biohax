@@ -1,6 +1,6 @@
 const openMenu = () => {
     $('.header__burger').toggleClass("header__burger-open");
-    $('.header__logo ').toggleClass("header__logo-white");
+    $('.header').toggleClass("header__open");
     $('.header__menu-mob').toggleClass('header__menu-show');
     $('.header__container').toggleClass('header__open');
     $('.header__drop').removeClass('header__drop-open');
@@ -8,6 +8,68 @@ const openMenu = () => {
     $('body').toggleClass('hidden');
 };
 
+
+
+const showQuestion = () =>{
+    $('.quiz__question').each(function (){
+        let stepNumber = $(this).attr('data-number')
+        $(this).find('.quiz__question-step').text(`step ${stepNumber}`)
+    })
+
+    $('.quiz__question:first-child').addClass('active')
+
+    $('.quiz__button').each(function (){
+        $(this).attr('disabled', true);
+    })
+
+
+    $('.quiz__question input').on('change', function () {
+        if ($('.quiz__question input').is(':checked')) {
+            let buttonNext= $(this).closest('.quiz__question').find('.quiz__button')
+            buttonNext.attr('disabled', false);
+        } else buttonNext.attr('disabled', true);
+    });
+
+    $('.quiz__button').click(function (){
+        let activeQuestion = $('.quiz__question.active')
+        activeQuestion.removeClass('active')
+        activeQuestion.next('.quiz__question').addClass('active')
+        })
+
+
+}
+
+const oneActive = (item,itemElem) =>{
+    item.addClass('active');
+    item.prevAll(itemElem).removeClass('active');
+    item.nextAll(itemElem).removeClass('active');
+}
+
+const serviceActive = () => {
+    $('.service__nav li').click(function () {
+        const currentService = $(this)
+        const currentId = currentService.attr("id")
+        const serviceUrl = currentService.attr("data-url")
+
+        oneActive(currentService,'li')
+        $('.service__nav-read').attr('href',serviceUrl )
+
+        $('.service__nav-desc li').each(function (){
+            let desc = $(this).attr('data-desc')
+            let ths = $(this)
+            if(currentId == desc ){
+                oneActive(ths,'li')
+            }
+        })
+        $('.service__nav-img').each(function (){
+            let img = $(this).attr('data-img')
+            let ths = $(this)
+            if(currentId == img){
+                oneActive(ths,'.service__nav-img')
+            }
+        })
+    });
+};
 
 
 function toogleModal(btn, modal) {
@@ -255,6 +317,12 @@ function mobChange(){
 
         let headerBook = $('.header__book')
         $('.header__menu-mob').append(headerBook)
+
+
+        $('.header__drop').click(function () {
+            $(this).toggleClass('header__drop-open');
+            $('.header__submenu').toggleClass("header__submenu-open");
+        });
     }
 }
 
@@ -295,6 +363,8 @@ $(document).ready(function(){
     counter();
     mobChange();
     showReview();
+    serviceActive();
+    showQuestion();
     $('.section__select').select2({});
     $('.header__burger').on('click', openMenu);
 
