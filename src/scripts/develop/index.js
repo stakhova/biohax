@@ -134,126 +134,101 @@ const showReview = () => {
     toogleModal($('.review__text span'), $('.modal__review'));
 };
 
-function toogleModalWithoutClick(modal, func) {
-    modal.show();
-    $('body').css('overflow', 'hidden');
-    $('.modal__close').click(function () {
-        $(this).closest(modal).hide();
-        $('body').css('overflow', 'visible');
-        func();
-        return false;
-    });
-    $(document).keydown(function (e) {
-        if (e.keyCode === 27) {
-            e.stopPropagation();
-            modal.hide();
-            $('body').css('overflow', 'visible');
-            func();
-        }
-    });
-    modal.click(function (e) {
-        if ($(e.target).closest('.modal__content').length == 0) {
-            $(this).hide();
-            $('body').css('overflow', 'visible');
-            func();
-        }
-    });
-}
 
 
-const validateForm = (form, func) => {
-    form.on("submit", function (e) {
-        e.preventDefault();
-    });
-
-    $.validator.addMethod("goodName", function (value, element) {
-        return this.optional(element) || /^[аА-яЯіІєЄїЇґҐa-zA-Z0-9._-]{2,30}$/i.test(value);
-    }, "Enter correct name");
-
-    $.validator.addMethod("goodAddress", function (value, element) {
-        return this.optional(element) || /^[аА-яЯіІєЄїЇґҐa-zA-Z0-9._-]{2,100}$/i.test(value);
-    }, "Enter correct address");
-
-
-    $.validator.addMethod("goodEmail", function (value, element) {
-        return this.optional(element) || /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,62}$/i.test(value);
-    }, "Enter correct phone email");
-
-    $.validator.addMethod("goodPhone", function (value, element) {
-        // return this.optional(element) || /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/i.test(value);
-        return this.optional(element) || /^[+]*[0-9]{10,14}$/g.test(value);
-    }, "Enter correct phone number");
-
-    form.validate({
-        rules: {
-            name: {
-                required: true,
-                goodName: true
-            },
-            address: {
-                required: true,
-                goodAddress: true
-            },
-
-            phone: {
-                required: true,
-                goodPhone: true
-
-            },
-            email: {
-                required: true,
-                goodEmail: true,
-                email: true
-            },
-        },
-        messages: {
-            name: {
-                required: "This field is required",
-                minlength: "Name can't be shorter than 2 letter",
-                maxLength: "Name can't be longer than 30 letter"
-            },
-            address: {
-                required: "This field is required",
-                minlength: "Address can't be shorter than 2 letter",
-                maxLength: "Address can't be longer than 100 letter"
-            },
-            phone: {
-                required: "This field is required",
-                phone: "Enter correct phone number"
-            },
-            email: {
-                required: "This field is required",
-                email: "Enter valid email"
-            },
-        },
-        submitHandler: function () {
-            func();
-            form[0].reset();
-        }
-    });
-};
-
-// create ajax
-function ajaxSend(date, url, func) {
-    $.ajax({
-        url: url,
-        data: date,
-        method: 'POST',
-        success: function (data) {
-            func(data);
-        },
-        error: function (error) {},
-        complete: function () {}
-    });
-
-}
-
-// send form
-function sendForm(form, url, func) {
-    form = form.serialize();
-    ajaxSend(form, url, func);
-}
-
+// const validateForm = (form, func) => {
+//     form.on("submit", function (e) {
+//         e.preventDefault();
+//     });
+//
+//     $.validator.addMethod("goodName", function (value, element) {
+//         return this.optional(element) || /^[аА-яЯіІєЄїЇґҐa-zA-Z0-9._-]{2,30}$/i.test(value);
+//     }, "Enter correct name");
+//
+//     $.validator.addMethod("goodAddress", function (value, element) {
+//         return this.optional(element) || /^[аА-яЯіІєЄїЇґҐa-zA-Z0-9._-]{2,100}$/i.test(value);
+//     }, "Enter correct address");
+//
+//
+//     $.validator.addMethod("goodEmail", function (value, element) {
+//         return this.optional(element) || /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,62}$/i.test(value);
+//     }, "Enter correct phone email");
+//
+//     $.validator.addMethod("goodPhone", function (value, element) {
+//         // return this.optional(element) || /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/i.test(value);
+//         return this.optional(element) || /^[+]*[0-9]{10,14}$/g.test(value);
+//     }, "Enter correct phone number");
+//
+//     form.validate({
+//         rules: {
+//             name: {
+//                 required: true,
+//                 goodName: true
+//             },
+//             address: {
+//                 required: true,
+//                 goodAddress: true
+//             },
+//
+//             phone: {
+//                 required: true,
+//                 goodPhone: true
+//
+//             },
+//             email: {
+//                 required: true,
+//                 goodEmail: true,
+//                 email: true
+//             },
+//         },
+//         messages: {
+//             name: {
+//                 required: "This field is required",
+//                 minlength: "Name can't be shorter than 2 letter",
+//                 maxLength: "Name can't be longer than 30 letter"
+//             },
+//             address: {
+//                 required: "This field is required",
+//                 minlength: "Address can't be shorter than 2 letter",
+//                 maxLength: "Address can't be longer than 100 letter"
+//             },
+//             phone: {
+//                 required: "This field is required",
+//                 phone: "Enter correct phone number"
+//             },
+//             email: {
+//                 required: "This field is required",
+//                 email: "Enter valid email"
+//             },
+//         },
+//         submitHandler: function () {
+//             func();
+//             form[0].reset();
+//         }
+//     });
+// };
+//
+// // create ajax
+// function ajaxSend(date, url, func) {
+//     $.ajax({
+//         url: url,
+//         data: date,
+//         method: 'POST',
+//         success: function (data) {
+//             func(data);
+//         },
+//         error: function (error) {},
+//         complete: function () {}
+//     });
+//
+// }
+//
+// // send form
+// function sendForm(form, url, func) {
+//     form = form.serialize();
+//     ajaxSend(form, url, func);
+// }
+//
 
 
 const gallery = new Swiper('.main__gallery-swiper', {
@@ -328,46 +303,208 @@ function mobChange(){
 
 
 function counter() {
-    $(window).scroll(function() {
-        let counted = 0;
-        let oTop = $('#counter').offset().top - window.innerHeight;
-        if (counted == 0 && $(window).scrollTop() > oTop) {
-            $('.achievement__counter').each(function() {
-                let $this = $(this),
-                    countTo = $this.attr('data-count');
-                $({
-                    countNum: $this.text()
-                }).animate({
-                        countNum: countTo
-                    },
-                    {
+    // $(window).scroll(function() {
+    //     let counted = 0;
+    //     let oTop = $('#counter').offset().top - window.innerHeight;
+    //     if (counted == 0 && $(window).scrollTop() > oTop) {
+    //         $('.achievement__counter').each(function() {
+    //             let $this = $(this),
+    //                 countTo = $this.attr('data-count');
+    //             $({
+    //                 countNum: $this.text()
+    //             }).animate({
+    //                     countNum: countTo
+    //                 },
+    //                 {
+    //
+    //                     duration: 2000,
+    //                     easing: 'swing',
+    //                     step: function() {
+    //                         $this.text(Math.floor(this.countNum));
+    //                     },
+    //                     complete: function() {
+    //                         $this.text(this.countNum);
+    //                     }
+    //
+    //                 });
+    //         });
+    //         counted = 1;
+    //     }
+    //
+    // });
+}
 
-                        duration: 2000,
-                        easing: 'swing',
-                        step: function() {
-                            $this.text(Math.floor(this.countNum));
-                        },
-                        complete: function() {
-                            $this.text(this.countNum);
-                        }
 
-                    });
-            });
-            counted = 1;
-        }
+function takeCountryNumber() {
+    const inputs = $("[data-phone]");
 
+    inputs.each(function () {
+        const input = $(this);
+        const iti = window.intlTelInput(input[0], {
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            initialCountry: "lu",
+        });
+
+        input.on("input", function () {
+            const selectedCountryData = iti.getSelectedCountryData();
+            let phoneNumber = $(this).val().trim();
+
+            if (selectedCountryData.dialCode) {
+                if (!phoneNumber.startsWith(selectedCountryData.dialCode)) {
+                    phoneNumber = selectedCountryData.dialCode + phoneNumber;
+                    $(this).val(phoneNumber);
+                }
+            }
+        });
     });
 }
 
-$(document).ready(function(){
-    counter();
-    mobChange();
-    showReview();
-    serviceActive();
-    showQuestion();
-    $('.section__select').select2({});
-    $('.header__burger').on('click', openMenu);
 
+
+
+
+
+
+
+
+
+
+function tabsYear() {
+
+    $(".date__tab .tab").click(function () {
+        $(".date__tab .tab").removeClass("active").eq($(this).index()).addClass("active");
+        $(".date__tab-item").hide().eq($(this).index()).fadeIn();
+        let currentYear = $(this).text()
+        $('.date__currentYear').text(currentYear)
+
+    }).eq(0).addClass("active");
+    let currentYear = $(".date__tab .tab:first-child").text()
+    $('.date__currentYear').text(currentYear)
+
+
+}
+
+function deleteSpace(){
+    $('.date__img').each(function (){
+        if($(this).find('img').length==0){
+            $(this).remove()
+        }
+    })
+}
+
+const validateFormSubs = (form, func) => {
+    form.on("submit", function (e) {
+        e.preventDefault();
+    });
+
+    $.validator.addMethod("goodEmail", function (value, element) {
+        return this.optional(element) || /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,62}$/i.test(value);
+    }, "Enter correct phone email");
+
+
+    form.validate({
+        rules: {
+            email: {
+                required: true,
+                goodEmail: true,
+                email: true
+            }
+        },
+        messages: {
+            email: {
+                required: "This field is required",
+                email: "Please enter the correct email"
+            },
+        },
+        submitHandler: function () {
+            func();
+            form[0].reset();
+        }
+    });
+};
+
+// create ajax
+function ajaxSend(date, url, func) {
+    $.ajax({
+        url: url,
+        data: date,
+        method: 'POST',
+        success: function (data) {
+            func(data);
+        },
+        error: function (error) {},
+        complete: function () {}
+    });
+
+}
+
+// send form
+function sendForm(form, url, func) {
+    form = form.serialize();
+    ajaxSend(form, url, func);
+}
+
+
+
+function toogleModalWithoutClick(modal, func) {
+    modal.show();
+    $('body').css('overflow', 'hidden');
+    $('.modal__close').click(function () {
+        $(this).closest(modal).hide();
+        $('body').css('overflow', 'visible');
+        func();
+        return false;
+    });
+    $(document).keydown(function (e) {
+        if (e.keyCode === 27) {
+            e.stopPropagation();
+            modal.hide();
+            $('body').css('overflow', 'visible');
+            func();
+        }
+    });
+    modal.click(function (e) {
+        if ($(e.target).closest('.modal__content').length == 0) {
+            $(this).hide();
+            $('body').css('overflow', 'visible');
+            func();
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready(function(){
+    counter()
+    mobChange()
+    showReview()
+    serviceActive()
+    showQuestion()
+    takeCountryNumber()
+    $('.section__select').select2({})
+    $('.header__burger').on('click', openMenu);
+    tabsYear()
+    deleteSpace()
 });
 
 
@@ -376,14 +513,22 @@ $(document).ready(function(){
 $(window).load(function(){
     let formConsultation = $('.consultation__form'),
         modalConsultation = $(".modal__consultation");
-    validateForm(formConsultation, function () {
+    validate(formConsultation, function () {
         sendForm(formConsultation, '/wp-admin/admin-ajax.php');
         toogleModalWithoutClick(modalConsultation);
     });
-    let formFooter = $('.footer__form')
-    validateForm(formFooter, function () {
-        sendForm(formFooter, '/wp-admin/admin-ajax.php');
-        toogleModalWithoutClick(modalConsultation);
+
+
+
+
+
+
+    let formSubs = $('.subs__form')
+    let modalSubs = $('.modal__subs')
+
+    validateFormSubs(formSubs, function () {
+        sendForm(formSubs, '/wp-admin/admin-ajax.php');
+        toogleModalWithoutClick(modalSubs);
     });
 
 });
@@ -391,3 +536,5 @@ $(window).load(function(){
 $(window).resize(function(){
 
 });
+
+

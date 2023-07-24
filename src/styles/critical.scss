@@ -19,6 +19,12 @@
 @include font-face("Inter", "Inter-Bold", 700, normal);
 @include font-face("Roboto", "Roboto-Regular", 400, normal);
 
+
+@include font-face("Monserrat", "Monserrat-Regular", 400, normal);
+@include font-face("Monserrat", "Monserrat-Medium", 500, normal);
+@include font-face("Monserrat", "Monserrat-Bold", 700, normal);
+
+
 :root {
     --color-white: #fff;
     --color-accent: #AC7E65;
@@ -33,6 +39,25 @@
     --gradient-review: linear-gradient(180deg, rgba(250, 250, 250, 0.95) 0%, rgba(248, 248, 248, 0.95) 100%);
     --Inter: 'Inter', sans-serif;
     --Roboto: 'Roboto', sans-serif;
+
+
+
+
+    --main-color: #000000;
+    --color-title: #232323;
+    --color-back: #2C2C2C;
+    --color-button: #26B44A;
+    --back-section-brands: #1B1919;
+    --back-input: #D9D9D9;
+    --back-contact-line: rgba(217,217,217,0.1);
+    --color-error:#C02B0A;
+    --back-brands:#151515;
+    --back-filter:rgba(0, 0, 0, 0.5);
+    --Lato: 'Lato', sans-serif;
+    --Poppins: 'Poppins', sans-serif;
+    --Europa: 'Europa', sans-serif;
+    --Monserrat: 'Monserrat', sans-serif;
+
 }
 
 *,*:before,
@@ -69,6 +94,12 @@ mark{
         object-fit: cover;
         display: block;
     }
+}
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 ul {
     list-style: none;
