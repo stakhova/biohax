@@ -303,125 +303,40 @@ function mobChange(){
 
 
 function counter() {
-    // $(window).scroll(function() {
-    //     let counted = 0;
-    //     let oTop = $('#counter').offset().top - window.innerHeight;
-    //     if (counted == 0 && $(window).scrollTop() > oTop) {
-    //         $('.achievement__counter').each(function() {
-    //             let $this = $(this),
-    //                 countTo = $this.attr('data-count');
-    //             $({
-    //                 countNum: $this.text()
-    //             }).animate({
-    //                     countNum: countTo
-    //                 },
-    //                 {
-    //
-    //                     duration: 2000,
-    //                     easing: 'swing',
-    //                     step: function() {
-    //                         $this.text(Math.floor(this.countNum));
-    //                     },
-    //                     complete: function() {
-    //                         $this.text(this.countNum);
-    //                     }
-    //
-    //                 });
-    //         });
-    //         counted = 1;
-    //     }
-    //
-    // });
-}
+    $(window).scroll(function() {
+        let counted = 0;
+        let oTop = $('#counter').offset().top - window.innerHeight;
+        if (counted == 0 && $(window).scrollTop() > oTop) {
+            $('.achievement__counter').each(function() {
+                let $this = $(this),
+                    countTo = $this.attr('data-count');
+                $({
+                    countNum: $this.text()
+                }).animate({
+                        countNum: countTo
+                    },
+                    {
 
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function() {
+                            $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function() {
+                            $this.text(this.countNum);
+                        }
 
-function takeCountryNumber() {
-    const inputs = $("[data-phone]");
-
-    inputs.each(function () {
-        const input = $(this);
-        const iti = window.intlTelInput(input[0], {
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-            initialCountry: "lu",
-        });
-
-        input.on("input", function () {
-            const selectedCountryData = iti.getSelectedCountryData();
-            let phoneNumber = $(this).val().trim();
-
-            if (selectedCountryData.dialCode) {
-                if (!phoneNumber.startsWith(selectedCountryData.dialCode)) {
-                    phoneNumber = selectedCountryData.dialCode + phoneNumber;
-                    $(this).val(phoneNumber);
-                }
-            }
-        });
-    });
-}
-
-
-
-
-
-
-
-
-
-
-
-function tabsYear() {
-
-    $(".date__tab .tab").click(function () {
-        $(".date__tab .tab").removeClass("active").eq($(this).index()).addClass("active");
-        $(".date__tab-item").hide().eq($(this).index()).fadeIn();
-        let currentYear = $(this).text()
-        $('.date__currentYear').text(currentYear)
-
-    }).eq(0).addClass("active");
-    let currentYear = $(".date__tab .tab:first-child").text()
-    $('.date__currentYear').text(currentYear)
-
-
-}
-
-function deleteSpace(){
-    $('.date__img').each(function (){
-        if($(this).find('img').length==0){
-            $(this).remove()
+                    });
+            });
+            counted = 1;
         }
-    })
+
+    });
 }
 
-const validateFormSubs = (form, func) => {
-    form.on("submit", function (e) {
-        e.preventDefault();
-    });
-
-    $.validator.addMethod("goodEmail", function (value, element) {
-        return this.optional(element) || /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,62}$/i.test(value);
-    }, "Enter correct phone email");
 
 
-    form.validate({
-        rules: {
-            email: {
-                required: true,
-                goodEmail: true,
-                email: true
-            }
-        },
-        messages: {
-            email: {
-                required: "This field is required",
-                email: "Please enter the correct email"
-            },
-        },
-        submitHandler: function () {
-            func();
-            form[0].reset();
-        }
-    });
-};
+
 
 // create ajax
 function ajaxSend(date, url, func) {
@@ -443,6 +358,68 @@ function sendForm(form, url, func) {
     form = form.serialize();
     ajaxSend(form, url, func);
 }
+
+
+
+
+
+
+//
+//
+//
+// function tabsYear() {
+//
+//     $(".date__tab .tab").click(function () {
+//         $(".date__tab .tab").removeClass("active").eq($(this).index()).addClass("active");
+//         $(".date__tab-item").hide().eq($(this).index()).fadeIn();
+//         let currentYear = $(this).text()
+//         $('.date__currentYear').text(currentYear)
+//
+//     }).eq(0).addClass("active");
+//     let currentYear = $(".date__tab .tab:first-child").text()
+//     $('.date__currentYear').text(currentYear)
+//
+//
+// }
+//
+// function deleteSpace(){
+//     $('.date__img').each(function (){
+//         if($(this).find('img').length==0){
+//             $(this).remove()
+//         }
+//     })
+// }
+//
+// const validateFormSubs = (form, func) => {
+//     form.on("submit", function (e) {
+//         e.preventDefault();
+//     });
+//
+//     $.validator.addMethod("goodEmail", function (value, element) {
+//         return this.optional(element) || /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,62}$/i.test(value);
+//     }, "Enter correct phone email");
+//
+//
+//     form.validate({
+//         rules: {
+//             email: {
+//                 required: true,
+//                 goodEmail: true,
+//                 email: true
+//             }
+//         },
+//         messages: {
+//             email: {
+//                 required: "This field is required",
+//                 email: "Please enter the correct email"
+//             },
+//         },
+//         submitHandler: function () {
+//             func();
+//             form[0].reset();
+//         }
+//     });
+// };
 
 
 
@@ -495,16 +472,13 @@ function toogleModalWithoutClick(modal, func) {
 
 
 $(document).ready(function(){
-    counter()
+    counter();
     mobChange()
     showReview()
     serviceActive()
     showQuestion()
-    takeCountryNumber()
     $('.section__select').select2({})
     $('.header__burger').on('click', openMenu);
-    tabsYear()
-    deleteSpace()
 });
 
 
@@ -518,18 +492,6 @@ $(window).load(function(){
         toogleModalWithoutClick(modalConsultation);
     });
 
-
-
-
-
-
-    let formSubs = $('.subs__form')
-    let modalSubs = $('.modal__subs')
-
-    validateFormSubs(formSubs, function () {
-        sendForm(formSubs, '/wp-admin/admin-ajax.php');
-        toogleModalWithoutClick(modalSubs);
-    });
 
 });
 
